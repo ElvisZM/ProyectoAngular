@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2>Películas Populares</h2>
-            <div id="popularMoviesCarousel" class="carousel slide active" data-ride="carousel">
+            <h2 class="titleshome">Películas Populares</h2>
+            <div id="popularMoviesCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item" *ngFor="let movie of popularMovies; let i = index"
+                    <div class="carousel-item active" *ngFor="let movie of popularMovies; let i = index"
                         [ngClass]="{'active': i === 0}">
-                        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="d-block w-100"
+                        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="d-block w-50 "
                             alt="{{ movie.title }}">
                     </div>
                 </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <h2>Películas Mejor Valoradas</h2>
+            <h2 class="titleshome">Películas Mejor Valoradas</h2>
             <div class="card-columns">
                 <div class="card" *ngFor="let movie of topRatedMovies">
                     <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top"
@@ -37,3 +37,19 @@
         </div>
     </div>
 </div>
+
+<style>
+    .carousel-item{
+        margin: 1% 20%;
+        width: 130%;
+    }
+
+    .titleshome{
+        text-align: center;
+        margin-top: 2%;
+        font-weight: bold;
+        margin-bottom: 5%;
+
+    }
+
+</style>
