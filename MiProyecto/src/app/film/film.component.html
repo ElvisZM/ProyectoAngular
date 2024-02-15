@@ -1,1 +1,25 @@
-<p>film works!</p>
+<div *ngIf="movieDetails">
+    <div class="">
+        <h2 class="mt-4 mb-4">{{ movieDetails.title }}</h2>
+        <p class="mb-4"><img class="img-ind" [src]="'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path" alt="{{ movieDetails.title }}"></p>
+        <h3 class="texto-ind">{{ movieDetails.overview }}</h3>
+    </div>
+</div>
+
+<style>
+
+    h2 {
+        display: block;
+        font-weight: bold;
+
+    }
+
+    .texto-ind{
+        width: 25%;
+        margin-left: 38%;
+        font-weight: 500;
+        text-align: left;
+    }
+
+
+</style>

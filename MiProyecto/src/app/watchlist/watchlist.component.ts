@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WatchlistComponent implements OnInit{
   popularMovies: any[] = [];
+  specificMovie= []
 
   constructor(private http: HttpClient) { }
 
@@ -22,4 +23,13 @@ getPopularMovies() {
       this.popularMovies = response.results.slice(0, 15);
     });
  }
+
+ verDetalles(movieId: number) {
+  this.http.get<any>('https://api.themoviedb.org/3/movie/' + movieId + '?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
+    .subscribe(response => {
+      const Id = response.id;
+      const url = 'http://0.0.0.0:4200/film/'+movieId;
+      window.open(url, '_blank');
+    });
+}
 }

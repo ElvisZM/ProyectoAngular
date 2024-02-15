@@ -22,7 +22,7 @@ import { FilmComponent } from './film/film.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, // Agrega HttpClientModule aquí
+    HttpClientModule,
     AppRoutingModule,
     CarouselModule.forRoot()
   ],
