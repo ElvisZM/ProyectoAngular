@@ -13,32 +13,12 @@
               </li>
           </ul>
           <form class="busqueda d-flex">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search" (keyup)="searchTerm$.next($event.target.value)">
               <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
       </div>
   </div>
 </nav>
-
-
-<style>
-
-    .collapse{
-        display: flex;
-        justify-content: space-evenly;
-    }
-
-    .menu > li{
-        margin-right: 20%;
-        color: black;
-    }
-
-    .busqueda > input {
-        margin-right: 2%;
-    }
-
-
-</style>
 
 
 <router-outlet></router-outlet>

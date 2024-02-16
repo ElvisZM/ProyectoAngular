@@ -1,4 +1,16 @@
+<div>
+    
+</div>
+
+
 <div class="container">
+    <h1>Buscador</h1>
+  
+    <ul class="list">
+      <li *ngFor="let item of listaFiltrada">
+        {{item}}
+      </li>
+    </ul>
     <div class="row">
         <div class="col">
             <h2 class="main-title">¡Nuestra Cartelera!</h2>
@@ -8,7 +20,7 @@
                         alt="{{ movie.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ movie.title }}</h5>
-                        <p class="card-text">{{ movie.overview.slice(0,200) }}...</p>
+                        <p class="card-text">{{ movie.overview.slice(0,150) }}...</p>
                     </div>
                     <button class="botones btn btn-primary" (click)="verDetalles(movie.id)">Detalles</button>
                 </div>
@@ -16,26 +28,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .main-title {
-        text-align: center;
-        font-weight: bold;
-        margin-top: 2%;
-        margin-bottom: 2%;
-    }
-
-    .card {
-        width: 30%;
-        height: 50rem;
-        position: relative;
-    }
-
-    .botones {
-        position: absolute;
-        bottom: 2%;
-        left: 6%;
-    }
-
-</style>
 
