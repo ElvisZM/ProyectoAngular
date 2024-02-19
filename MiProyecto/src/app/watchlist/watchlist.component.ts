@@ -14,17 +14,18 @@ export class WatchlistComponent implements OnInit{
 
   ngOnInit(): void {
 
-  this.getPopularMovies();
+  this.watchlistMovies();
 }
 
-getPopularMovies() {
+watchlistMovies() {
   this.http.get<any>('https://api.themoviedb.org/3/movie/popular?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
     .subscribe(response => {
       this.popularMovies = response.results.slice(0, 15);
+      console.log(this.popularMovies)
     });
  }
 
- verDetalles(movieId: number) {
+verDetalles(movieId: number) {
   this.http.get<any>('https://api.themoviedb.org/3/movie/' + movieId + '?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
     .subscribe(response => {
       const Id = response.id;

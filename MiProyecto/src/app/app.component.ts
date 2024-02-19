@@ -1,43 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'angular17';
-  searchTerm$ = new Subject<string>()!;
-  peliculasApi: any [] = [];
+  searchTerm$ = new Subject<string>();
+  peliculasApi: any[] = [];
+  listaFiltrada: any[] = [];
 
-  private listaPeliculas = this.peliculasApi
-  listaFiltrada: any
+  constructor(private http: HttpClient, private router: Router) { }
 
-  constructor(private http: HttpClient) { }
+  paginaBuscador(): boolean {
+  return this.router.url === '/buscador';
+}
 
   ngOnInit(): void {
-    this.listaFiltrada = this.listaPeliculas;
-    this.filtrarLista();
-  }
-
-  filtrarLista(): void {
-    this.searchTerm$.subscribe(term => {
-      this.listaFiltrada = this.listaPeliculas
-        .filter(item => item.toLowerCase().indexOf(term.toLowerCase())
-          >= 0);
-    });
-  }
-
-
-  getPopularMovies() {
-    this.http.get<any>('https://api.themoviedb.org/3/movie/popular?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
-      .subscribe(response => {
-        this.peliculasApi = response.results.title;
+    this.getPopularMovies();
+    this.searchTerm$
+      .subscribe(term => {
+        this.listaFiltrada = this.peliculasApi.filter(pelicula =>
+          pelicula.title.toLowerCase().includes(term.toLowerCase())
+        );
       });
   }
 
+  getPopularMovies(): void {
+    this.http.get<any>('https://api.themoviedb.org/3/movie/now_playing?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
+      .subscribe(response => {
+        this.peliculasApi = response.results;
+        this.listaFiltrada = this.peliculasApi;
+      });
+  }
+
+  onSearch(event: any): void {
+    const term = event.target.value;
+    this.searchTerm$.next(term);
+  }
 }
-
-
