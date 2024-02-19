@@ -1,42 +1,28 @@
 <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="menu navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                  <h2><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></h2>
-              </li>
-              <li class="nav-item">
-                  <h2><a class="nav-link" routerLink="/buscador" routerLinkActive="active" >Buscador</a></h2>
-              </li>
-              <li class="nav-item">
-                  <h2><a class="nav-link" routerLink="/watchlist" routerLinkActive="active">Watchlist</a></h2>
-              </li>
-          </ul>
-          <form class="busqueda d-flex" *ngIf="paginaBuscador()">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" (input)="onSearch($event)">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-      </div>
-  </div>
-</nav>
-
-
-<div class="container" *ngIf="paginaBuscador()">
-    <div class="row">
-        <div class="col">
-            <h2 class="main-title">¡Nuestra Cartelera!</h2>
-            <div class="card-columns d-flex flex-wrap">
-                <div class="card" *ngFor="let pelicula of listaFiltrada">
-                    <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" class="card-img-top"
-                        alt="{{ pelicula.title }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ pelicula.title }}</h5>
-                        <p class="card-text">{{ pelicula.overview.slice(0,150) }}...</p>
-                    </div>
-
-                </div>
-            </div>
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="menu navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <h2><a class="nav-link" routerLink="/" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: true}">Home</a></h2>
+                </li>
+                <li class="nav-item">
+                    <h2><a class="nav-link" routerLink="/watchlist" routerLinkActive="active">Watchlist</a></h2>
+                </li>
+                <li class="nav-item">
+                    <h2><a class="nav-link" routerLink="/registro" routerLinkActive="active">Registro</a></h2>
+                </li>
+            </ul>
+            <li class="nav-item">
+                <h2><a class="nav-link" routerLink="/buscador" routerLinkActive="active">Buscador</a></h2>
+            </li>
+            <form class="busqueda d-flex" *ngIf="paginaBuscador()">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                    >
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </div>
-</div>
+</nav>
+
 <router-outlet></router-outlet>
