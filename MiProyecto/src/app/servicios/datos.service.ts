@@ -1,38 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
+import { Subject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
-
 export class DatosService {
-  constructor(private http: HttpClient) { }
-
   searchTerm$ = new Subject<string>();
   peliculasApi: any[] = [];
   listaFiltrada: any[] = [];
 
+  constructor(private http: HttpClient) {}
 
-  this.searchTerm$
-  .subscribe(term => {
-    this.listaFiltrada = this.peliculasApi.filter(pelicula =>
-      pelicula.title.toLowerCase().includes(term.toLowerCase())
-    );
-  });
-
-  getPopularMovies(): Observable < any > {
-    this.http.get<any>('https://api.themoviedb.org/3/movie/now_playing?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
-      .subscribe(response => {
-        this.peliculasApi = response.results;
-        this.listaFiltrada = this.peliculasApi;
-      });
+  getPopularMovies(): Observable<any> {
+    return this.http.get<any>('https://api.themoviedb.org/3/movie/now_playing?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
+      .pipe(
+        map(response => {
+          this.peliculasApi = response.results;
+          this.listaFiltrada = this.peliculasApi;
+          return response;
+        })
+      );
   }
 
-onSearch(event: any): void {
-  const term = event.target.value;
-  this.searchTerm$.next(term);
+  watchSearchTerm() {
+    this.searchTerm$.subscribe(term => {
+      this.listaFiltrada = this.peliculasApi.filter(pelicula =>
+        pelicula.title.toLowerCase().includes(term.toLowerCase())
+      );
+    });
+  }
 }
-};
-
