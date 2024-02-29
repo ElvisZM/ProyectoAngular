@@ -1,18 +1,23 @@
 
-<div class="container" *ngIf="paginaBuscador()">
-    <div class="row">
-        <div class="col">
-            <h2 class="main-title">¡Nuestra Cartelera!</h2>
-            <div class="card-columns d-flex flex-wrap">
-                <div class="card" *ngFor="let pelicula of listaFiltrada">
-                    <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" class="card-img-top"
-                        alt="{{ pelicula.title }}">
+<div class="container mt-5">
+        <div class="row">
+            <div class="col-4 mb-4" *ngFor="let movie of resultadoFiltro">
+                <div class="card h-100 mb-5">
                     <div class="card-body">
-                        <h5 class="card-title">{{ pelicula.title }}</h5>
-                        <p class="card-text">{{ pelicula.overview.slice(0,150) }}...</p>
+                        <div>
+                            <div *ngIf="movie.poster_path">
+                                <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+                                    class="card-img-top img-fluid mb-2" alt="movie.title">
+                            </div>
+                            <div *ngElse>
+                                <img class="card-img-top img-fluid mb-2" alt="">
+                            </div>
+                        </div>
+                        <h2>{{ movie.title }}</h2>
+                        <p class="descripcion">{{ movie.overview.slice(0, 150) }}...</p>
+                        <p class="puntuacion">{{ movie.vote_average }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

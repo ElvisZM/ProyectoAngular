@@ -1,3 +1,7 @@
+.navbar{
+    background-color: black;
+}
+
 .collapse{
     display: flex;
     justify-content: space-evenly;
@@ -6,10 +10,6 @@
 .menu > li{
     margin-right: 20%;
     color: black;
-}
-
-.busqueda > input {
-    margin-right: 2%;
 }
 
 .main-title {
@@ -30,3 +30,45 @@
     bottom: 2%;
     left: 6%;
 }
+
+.barrita{
+    display: flex;
+    width: 100%;
+}
+
+.elementos {
+    justify-content: space-between;
+    padding-right: 2%;
+}
+
+.componentes{
+    color: white;
+    font-size: x-large;
+    padding-top: 2em;
+}
+
+.componentehome{
+    color: white;
+    font-size: x-large;
+    margin-left: 11em;
+    padding-top: 2em;
+
+}
+
+.cine{
+    font-size: 50px;
+    color: red;
+    width: 6em;
+    text-align: center;
+}
+
+
+.nav-link{
+    color: white;
+}
+
+button{
+    background-color: red;
+    color: white;
+}
+

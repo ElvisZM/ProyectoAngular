@@ -1,26 +1,23 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav class="navbar navbar-expand-lg">
+    <div class="barrita">
+        <div class="elementos navbar-collapse" id="navbarSupportedContent">
             <ul class="menu navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="nav-link" routerLink="/" routerLinkActive="active"><h1 class="cine">CINE P.SUR A-17</h1></a>
                 <li class="nav-item">
-                    <h2><a class="nav-link" routerLink="/" routerLinkActive="active"
-                            [routerLinkActiveOptions]="{exact: true}">Home</a></h2>
+                    <a class="nav-link" routerLink="/" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: true}"><h2 class="componentehome">Home</h2></a>
                 </li>
                 <li class="nav-item">
-                    <h2><a class="nav-link" routerLink="/watchlist" routerLinkActive="active">Watchlist</a></h2>
+                    <a class="nav-link" routerLink="/watchlist" routerLinkActive="active"><h2 class="componentes">Watchlist</h2></a>
                 </li>
                 <li class="nav-item">
-                    <h2><a class="nav-link" routerLink="/registro" routerLinkActive="active">Registro</a></h2>
+                    <a class="nav-link" routerLink="/registro" routerLinkActive="active"><h2 class="componentes">Registro</h2></a>
                 </li>
             </ul>
-            <li class="nav-item">
-                <h2><a class="nav-link" routerLink="/buscador" routerLinkActive="active">Buscador</a></h2>
-            </li>
-            <form class="busqueda d-flex" *ngIf="paginaBuscador()">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                    >
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <div class="buscador d-flex" (submit)="buscar()">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="palabraBusqueda">
+                <button class="btn" type="submit" (submit)="buscar()">Search</button>
+            </div>
         </div>
     </div>
 </nav>

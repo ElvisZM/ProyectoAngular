@@ -25,6 +25,7 @@ import { RegistroComponent } from './registro/registro.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     CarouselModule.forRoot(),
