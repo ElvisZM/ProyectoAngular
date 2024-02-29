@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'; 
+import { DatosService } from '../servicios/datos.service';
 
 
 @Component({
@@ -14,18 +15,15 @@ export class HomeComponent implements OnInit {
   popularMovies: any[] = [];
   topRatedMovies: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private datosService: DatosService) { }
 
   ngOnInit(): void {
-    this.getPopularMovies();
-    this.getTopRatedMovies();
-  }
+    this.datosService.getPopularMovies().subscribe((data: any) => {
+      this.popularMovies = data.results.slice(0, 3);
+    });
 
-  getPopularMovies() {
-    this.http.get<any>('https://api.themoviedb.org/3/movie/popular?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
-      .subscribe(response => {
-        this.popularMovies = response.results.slice(0, 3);
-      });
+    this.getTopRatedMovies();
+
   }
 
   getTopRatedMovies() {
