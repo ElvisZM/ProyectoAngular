@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class RegistroService {
-  private apiUrlRegistro = 'http://127.0.0.1:8000/api/v1/registrar/usuario';
+  private apiUrlRegistro = 'http://elviszm12.pythonanywhere.com/api/v1/registrar/usuario';
 
 
   constructor(private http: HttpClient) { }
@@ -21,6 +21,4 @@ export class RegistroService {
         })
       );
   }
-
-
 }
