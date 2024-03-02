@@ -1,20 +1,65 @@
-<div class="container" *ngIf="movieDetails">
-    <div class="d-flex mt-4 ">
-        <img class="img-ind" [src]="'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path" alt="{{ movieDetails.title }}">
+<div *ngIf="movie" class="container">
+    <div class="d-flex mt-4">
+        <img class="img-ind" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title">
         <div class="p-2">
-            <h1 class="card-title text-center">{{ movieDetails.title }}</h1>
-            <hr>
-            <h3>Descripcion</h3>
-            <h4 class="texto-ind">{{ movieDetails.overview }}</h4>
-            <hr>
-            <h3>Fecha lanzamiento</h3>
-            <h4>{{ movieDetails.release_date }}</h4>
-            <hr>
-            <h3>Género</h3>
-            <div *ngFor="let genero of movieDetails.genres">
-                <h4>{{ genero.name}}</h4>
+            <h1 class="card-title">{{ movie.title }}</h1>
+            <div class="genero d-flex">
+                <p *ngFor="let genero of movie.genres">{{ genero.name }}</p>
             </div>
+            <div class="d-flex">
+                <button type="button" class="watchlist btn" (click)="addWatchlist()">
+                    Añadir a Watchlist
+                </button>
+            </div>
+            <h3>Descripcion</h3>
+            <p class="mb-5">{{ movie.overview }}</p>
+            
+            <h3 class="mt-3">Reparto</h3>
+            <div class="row ms-4">
+                <div class="col-3" *ngFor="let actor of castMovie.slice(0, 4)">
+                    <div class="actor-container">
+                        <img class="img-actor " [src]="'https://image.tmdb.org/t/p/w500' + actor.profile_path">
+                        <p class="nombre"> {{ actor.name }}</p>
+                        <p class="personaje">{{ actor.character }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="opiniones mb-5 mt-4">
+        <h3>Opiniones </h3>
+        <p>{{ movie.vote_average.toFixed(1) }}/10</p>
+    </div>
 
+    <div *ngFor="let review of reviewsMovie.slice(0, 3)">
+        <h5>{{ review.author }}</h5>
+        <p class="mb-5"> {{ review.content }}</p>
+    </div>
+    <h2 class="mt-5 mb-4 text-center">Similares</h2>
+    <div class="row ms-4">
+        <div class="col-3" *ngFor="let movie of recommendationsMovie.slice(0, 8)">
+            <div class="recommendation-container">
+                <img class="img-movie" [src]="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path">
+                <button class="detalles" (click)="detallePelicula(movie.id)"></button>
+                <p class="text-center">{{ movie.title }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        >
+        <div class="modal-dialog" style="margin-left: 28em;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Official Trailer: {{ movie.title }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

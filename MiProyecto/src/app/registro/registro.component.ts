@@ -13,7 +13,7 @@ export class RegistroComponent{
   nombre: string ="";
   email: string ="";
   usuario: string ="";
-  telefono: number = 0;
+  telefono: string = "";
   password1: string ="";
   password2: string ="";
   domicilio: string ="";
@@ -38,12 +38,13 @@ export class RegistroComponent{
 
     this.registroService.registroUsuario(dataSignUp)
       .subscribe(
-        reponse => {
-          console.log("usuario creado");
+        response => {
+          this.router.navigate(['/']);
         },
         error => {
           console.log(error);
         }
       );
   }
+
 }

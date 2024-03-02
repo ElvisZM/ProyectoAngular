@@ -1,18 +1,46 @@
-.main-title {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
 
 .card {
-    width: 30%;
-    height: 48rem;
     position: relative;
-}
-
-.botones {
+    height: 55em;
+    background-color: black;
+    color: white;
+  }
+  
+  .detalles {
     position: absolute;
-    bottom: 2%;
-    left: 6%;
-}
+    background-color: transparent;
+    cursor: pointer;
+    width: 27em;
+    height: 39em;
+    top: 0;
+    left: -0.5em;
+    border: none;
+    z-index: 1;
+  }
+  
+  
+  h2{
+    color: white;
+  }
+  
+  hr{
+    color: red;
+  }
+  
+  
+  .eliminar {
+      background-color: red;
+      color: white;
+      margin-left: 1em;
+      font-weight: bold;
+  }
+  
+  .eliminar:hover {
+      background-color: white;
+      color: black;
+  }
+  
+  .botones{
+    position: absolute;
+    bottom: 0;
+  }

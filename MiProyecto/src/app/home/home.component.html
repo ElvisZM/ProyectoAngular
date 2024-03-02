@@ -1,35 +1,40 @@
 <div class="container">
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" *ngFor="let movie of popularMovies; let i = index">
-                <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="d-block w-100 img-fluid"
-                    alt="{{ movie.title }}">
+            <div class="carousel-item" *ngFor="let movie of popularMovies; let i = index" [class.active]="i === 0"
+                data-bs-interval="7000">
+                <img [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movie.backdrop_path"
+                    class="d-block w-100" alt="...">
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
 </div>
-<div class="container">
+
+
+<div class="container mt-5">
+    <div>
+        <h2 class="mb-5">Películas mejor valoradas</h2>
+        <hr class="mb-5 w-50">
+    </div>
     <div class="row">
-        <div class="col">
-            <h2 class="titleshome">Películas Mejor Valoradas</h2>
-            <div class="card-columns">
-                <div class="card" *ngFor="let movie of topRatedMovies">
-                    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top"
-                        alt="{{ movie.title }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ movie.title }}</h5>
-                        <p class="card-text">{{ movie.overview }}</p>
-                    </div>
+        <div class="col-4 mb-4" *ngFor="let movie of topRatedMovies">
+            <div class="card">
+                <div>
+                    <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" class="card-img-top mx-auto"
+                        [alt]="movie.title">
+                    <button class="detalles" (click)="detallePelicula(movie.id)"></button>
+                </div>
+                <div class="card-body">
+                    <h2 class="text-center">{{ movie.title }}</h2>
+                    <p>{{ movie.overview.slice(0, 90) }}...</p>
                 </div>
             </div>
         </div>

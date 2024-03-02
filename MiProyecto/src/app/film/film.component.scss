@@ -1,29 +1,122 @@
 
-.img-ind{
-    display: flex;
+* {
+    color: white;
+    background-color: black;
 }
 
-.card-title{
+.card-title {
     font-weight: bold;
     margin-left: 5%;
-    margin-bottom: 10%;
-    font-family:sans-serif;
+    margin-bottom: 1%;
+    font-family: sans-serif;
     font-size: 50px;
+    color: red;
+    
 }
 
-div > h3 {
-    font-family:sans-serif;
+
+img{
+  filter:drop-shadow(5px 5px 5px red);
+}
+
+
+.img-ind {
+    height: auto;
+    width: auto;
+}
+
+
+.img-plat {
+    width: 2.5em;
+    height: 2.5em;
+    margin-left: 1em;
+    border-radius: 1em;
+
+}
+
+.actor-container {
+    position: relative;
+    display: inline-block;
+}
+
+.img-actor {
+    width: 8em;
+    height: 10em;
+    margin-bottom: 3%;
+    border-radius: 5em;
+}
+
+.detalles-actor {
+    position: absolute;
+    background-color: transparent;
+    height: 10em;
+    width: 8em;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: 5em;
+    border: none;
+}
+
+.nombre{
+    width: 8em;
+    text-align: center;
+}
+
+.personaje {
+    font-family: cursive;
+    width: 8em;
+    text-align: center;
+
+}
+
+div > h3{
+    font-family: sans-serif;
     margin-left: 5%;
+    font-weight: bold;
+} 
+
+
+div > p, div > a {
+    font-weight: 500;
+    margin-left: 5%;
+}
+
+.opiniones,
+.similares {
+    margin-right: 80em;
+}
+
+.recommendation-container {
+    position: relative;
+}
+
+.img-movie {
+    width: 19em;
+    height: 16em;
+    border-radius: 7em;
+}
+
+.detalles {
+    background-color: transparent;
+    position: absolute;
+    height: 16em;
+    width: 19em;
+    top: 0;
+    left: 0;
+    border-radius: 7em;
+    border: none;
+}
+
+.watchlist{
+    background-color: red;
+    color: white;
+    margin-bottom: 10%;
+    margin-left: 2.5em;
     font-weight: bold;
 }
 
-div > h4{
-    font-weight: 500;
-    text-align: left;
-    margin-left: 5%;
-}
-
-.card > img {
-    height: 100%;
-    width: 30%;
+.watchlist:hover{
+    background-color: white;
+    color: black;
 }

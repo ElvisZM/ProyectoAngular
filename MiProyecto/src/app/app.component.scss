@@ -39,14 +39,14 @@
 .componentes{
     color: white;
     font-size: x-large;
-    padding-top: 2em;
+    padding-top: 1em;
 }
 
 .componentehome{
     color: white;
     font-size: x-large;
     margin-left: 11em;
-    padding-top: 2em;
+    padding-top: 1em;
 
 }
 
@@ -55,6 +55,7 @@
     color: red;
     width: 6em;
     text-align: center;
+    text-shadow: 0px 0px 5px red;
 }
 
 
@@ -62,8 +63,26 @@
     color: white;
 }
 
-button{
+
+.busqueda{
     background-color: red;
     color: white;
-}
-
+    font-weight: bold;
+  }
+  
+  .busqueda:hover{
+      background-color: white;
+      color: black;
+  }
+  
+  .barrabusqueda{
+    background-color: white;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .barrabusqueda:hover{
+      background-color: white;
+      color: black;
+  }
+  

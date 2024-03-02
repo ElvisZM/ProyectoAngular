@@ -2,7 +2,7 @@
     <div class="barrita">
         <div class="elementos navbar-collapse" id="navbarSupportedContent">
             <ul class="menu navbar-nav me-auto mb-2 mb-lg-0">
-                <a class="nav-link" routerLink="/" routerLinkActive="active"><h1 class="cine">CINE P.SUR A-17</h1></a>
+                <a class="nav-link" routerLink="/" routerLinkActive="active"><h1 class="cine">CINE A-17</h1></a>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/" routerLinkActive="active"
                             [routerLinkActiveOptions]="{exact: true}"><h2 class="componentehome">Home</h2></a>
@@ -14,12 +14,14 @@
                     <a class="nav-link" routerLink="/registro" routerLinkActive="active"><h2 class="componentes">Registro</h2></a>
                 </li>
             </ul>
-            <div class="buscador d-flex" (submit)="buscar()">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="palabraBusqueda">
-                <button class="btn" type="submit" (submit)="buscar()">Search</button>
+            <div class="d-flex" (submit)="buscar()">
+                <input class="barrabusqueda form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                [(ngModel)]="palabraBusqueda" (keyup.enter)="buscar()">
+              <button class="busqueda btn" type="button" (click)="buscar()">Search</button>
             </div>
         </div>
     </div>
 </nav>
+
 
 <router-outlet></router-outlet>

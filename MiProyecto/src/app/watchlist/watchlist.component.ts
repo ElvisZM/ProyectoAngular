@@ -1,36 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-watchlist',
   templateUrl: './watchlist.component.html',
-  styleUrl: './watchlist.component.scss'
+  styleUrls: ['./watchlist.component.scss']
 })
-export class WatchlistComponent implements OnInit{
-  popularMovies: any[] = [];
-  specificMovie= []
+export class WatchlistComponent implements OnInit {
+  idCuenta: string = '20862103';
+  mywatchlist: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router:Router) { }
 
   ngOnInit(): void {
+    this.fetchMyWatchlist();
+  }
 
-  this.watchlistMovies();
-}
+  async fetchMyWatchlist(): Promise<void> {
+    try {
+      const options = {
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NjVlZGRjMjk1MzZkMWZmYzRlNWZkYWNlNDdhZThjNyIsInN1YiI6IjY1OGFiMzFiYjdiNjlkMDk2MjZkZTczOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Rufsppd2z4JY3JZaxJZDpC3FBWVswXCeqYoRkFl09ss'
+        }
+      };
 
-watchlistMovies() {
-  this.http.get<any>('https://api.themoviedb.org/3/movie/popular?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
-    .subscribe(response => {
-      this.popularMovies = response.results.slice(0, 15);
-      console.log(this.popularMovies)
-    });
- }
+      const respuesta = await this.http.get<any>('https://api.themoviedb.org/3/account/' + this.idCuenta + '/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc', options).toPromise();
+      this.mywatchlist = respuesta.results;
+    } catch (error) {
+      console.error('Error fetching movie:', error)
+    }
+  }
 
-verDetalles(movieId: number) {
-  this.http.get<any>('https://api.themoviedb.org/3/movie/' + movieId + '?api_key=665eddc29536d1ffc4e5fdace47ae8c7')
-    .subscribe(response => {
-      const Id = response.id;
-      const url = 'http://0.0.0.0:4200/film/'+movieId;
-      window.open(url, '_blank');
-    });
-}
+  async deleteFromWatchlist(movieId: number): Promise<void> {
+    try {
+      const options = {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NjVlZGRjMjk1MzZkMWZmYzRlNWZkYWNlNDdhZThjNyIsInN1YiI6IjY1OGFiMzFiYjdiNjlkMDk2MjZkZTczOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Rufsppd2z4JY3JZaxJZDpC3FBWVswXCeqYoRkFl09ss'
+        },
+        body: JSON.stringify({ media_type: 'movie', media_id: movieId, watchlist: false })
+      };
+
+      const respuesta = await fetch(`https://api.themoviedb.org/3/account/${this.idCuenta}/watchlist`, options);
+      if (respuesta.ok) {
+        await this.fetchMyWatchlist();
+      } else {
+        alert('No se pudo eliminar la película de tu watchlist');
+      }
+    } catch (error) {
+      console.error('Error fetching movie:', error)
+    }
+  }
+
+  detallePelicula(movieId: number) {
+    this.router.navigate(['/film', movieId]);
+  }
+
+
 }

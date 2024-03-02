@@ -1,20 +1,24 @@
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h2 class="main-title">¡Nuestras Películas Populares!</h2>
-            <div class="card-columns d-flex flex-wrap">
-                <div class="card" *ngFor="let movie of popularMovies">
-                    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top"
-                        alt="{{ movie.title }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ movie.title }}</h5>
-                        <p class="card-text">{{ movie.overview.slice(0,150) }}...</p>
-                    </div>
-                    <button class="botones btn btn-primary" (click)="verDetalles(movie.id)">Detalles</button>
-                </div>
-            </div>
-        </div>
+<div class="container mt-5">
+    <div>
+      <h2 class="mb-5">My Watchlist</h2>
+      <hr class="mb-5 w-50">
     </div>
-</div>
-
+    <div class="row">
+      <div class="col-4 mb-4" *ngFor="let movie of mywatchlist">
+        <div class="card">
+          <div>
+            <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top mx-auto img-fluid" [alt]="movie.title">
+            <button class="detalles" (click)="detallePelicula(movie.id)"></button>
+          </div>
+          <div class="card-body">
+            <h2>{{ movie.title }}</h2>
+            <p>{{ movie.overview.slice(0, 90) }}...</p>
+          </div>
+          <div class="botones">
+            <button type="button" class="eliminar btn" (click)="deleteFromWatchlist(movie.id)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

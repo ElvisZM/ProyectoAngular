@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
 import { DatosService } from '../servicios/datos.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   popularMovies: any[] = [];
   topRatedMovies: any[] = [];
 
-  constructor(private http: HttpClient, private datosService: DatosService) { }
+  constructor(private http: HttpClient, private datosService: DatosService, private router: Router) { }
 
   ngOnInit(): void {
     this.datosService.getPopularMovies().subscribe((data: any) => {
@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit {
       .subscribe(response => {
         this.topRatedMovies = response.results.slice(0, 15);
       });
+  }
+
+  detallePelicula(movieId: number) {
+    this.router.navigate(['/film', movieId]);
   }
 
 }

@@ -1,44 +1,43 @@
-<form (ngSubmit)="registrarFormulario()" >
-    <div class="container">   
-        <div class="d-flex justify-content-between mb-4">
-            <div class="mb-4">
-                <label class="d-block" for="nombre">Nombre</label>
-                <input class="w-50" id="nombre" name="nombre" type="text" [(ngModel)]="nombre" />
-            </div>
-    
-            <div class="mb-4">
-                <label class="d-block" for="email">Email</label>
-                <input  id="email" name="email" type="email" [(ngModel)]="email" />
-            </div>
-        </div>
 
-        <div class="d-flex justify-content-between mb-4">
+<div class="container">
+    <div class="form-container sign-up">
+        <form (ngSubmit)="registrarFormulario()">
+            <h1>Create Account</h1>
+            <div class="d-flex justify-content-between mb-4">
+                <div class="mb-4">
+                    <label class="d-block" for="nombre">Nombre</label>
+                    <input class="" id="nombre" name="nombre" type="text" [(ngModel)]="nombre" />
+                </div>
+                <div class="mb-4">
+                    <label class="d-block" for="email">Email</label>
+                    <input id="email" name="email" type="email" [(ngModel)]="email" />
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mb-4">
+                <div class="mb-4">
+                    <label class="d-block" for="usuario">Usuario</label>
+                    <input id="usuario" name="usuario" type="text" [(ngModel)]="usuario" />
+                </div>
+                <div class="mb-4">
+                    <label class="d-block" for="telefono">Telefono</label>
+                    <input id="telefono" name="telefono" type="telefono" [(ngModel)]="telefono" />
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mb-4">
+                <div>
+                    <label class="d-block" for="password1">Contraseña</label>
+                    <input id="password1" name="password1" type="password" [(ngModel)]="password1" />
+                </div>
+                <div>
+                    <label class="d-block" for="password2">Confirmar contraseña</label>
+                    <input id="password2" name="password2" type="password" [(ngModel)]="password2" />
+                </div>
+            </div>
             <div class="mb-4">
-                <label class="d-block" for="usuario">Usuario</label>
-                <input id="usuario" name="usuario" type="text" [(ngModel)]="usuario" />
+                <label class="d-block" for="domicilio">Domicilio</label>
+                <input class="" id="domicilio" name="domicilio" type="text" [(ngModel)]="domicilio" />
             </div>
-
-            <div class="mb-4">
-                <label class="d-block" for="telefono">Telefono</label>
-                <input  id="telefono" name="telefono" type="telefono" [(ngModel)]="telefono" />
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-between mb-4">
-            <div><label class="d-block" for="password1">Contraseña</label>
-            <input id="password1" name="pasword1" type="password" [(ngModel)]="password1" />
-            </div>
-            
-            <div>
-            <label class="d-block" for="password2">Confirmar contraseña</label>
-            <input id="password2" name="password2" type="password" [(ngModel)]="password2" />
-            </div>
-        </div>
-        <div class="mb-4">
-            <label class="d-block" for="domicilio">Domicilio</label>
-            <input class="w-50" id="domicilio" name="domicilio" type="text" [(ngModel)]="domicilio" />
-        </div>
-            
-        <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
     </div>
-</form>
+</div>
