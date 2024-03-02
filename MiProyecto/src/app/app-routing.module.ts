@@ -8,7 +8,7 @@ import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'buscador', component: BuscadorComponent },
+  { path: 'buscador/query/:query', component: BuscadorComponent },
   { path: 'watchlist', component: WatchlistComponent },
   { path: 'film/:id', component: FilmComponent },
   { path: 'registro', component: RegistroComponent },

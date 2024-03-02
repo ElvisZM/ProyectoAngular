@@ -1,46 +1,51 @@
-
 .card {
-    position: relative;
-    height: 55em;
-    background-color: black;
-    color: white;
-  }
-  
-  .detalles {
-    position: absolute;
-    background-color: transparent;
-    cursor: pointer;
-    width: 27em;
-    height: 39em;
-    top: 0;
-    left: -0.5em;
-    border: none;
-    z-index: 1;
-  }
-  
-  
-  h2{
-    color: white;
-  }
-  
-  hr{
-    color: red;
-  }
-  
-  
-  .eliminar {
-      background-color: red;
-      color: white;
-      margin-left: 1em;
-      font-weight: bold;
-  }
-  
-  .eliminar:hover {
-      background-color: white;
-      color: black;
-  }
-  
-  .botones{
-    position: absolute;
-    bottom: 0;
-  }
+  position: relative;
+  height: 55em;
+  background-color: black;
+  color: white;
+}
+
+.detalles {
+  position: absolute;
+  background-color: transparent;
+  cursor: pointer;
+  width: 27em;
+  height: 39em;
+  top: 0;
+  left: -0.5em;
+  border: none;
+  z-index: 1;
+  border-radius: 15em;
+
+}
+
+img{
+  filter:drop-shadow(5px 5px 7px red);
+  border-radius: 15em;
+}
+
+h2 {
+  color: white;
+}
+
+hr {
+  color: red;
+}
+
+
+.eliminar {
+  background-color: red;
+  color: white;
+  margin-left: 1em;
+  font-weight: bold;
+}
+
+.eliminar:hover {
+  background-color: white;
+  color: black;
+}
+
+.botones {
+  position: absolute;
+  bottom: 0;
+}

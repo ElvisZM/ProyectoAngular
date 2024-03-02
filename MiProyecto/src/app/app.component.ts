@@ -15,7 +15,7 @@ export class AppComponent {
 
   buscar(){
     this.datosService.setPalabraBuscada(this.palabraBusqueda);
-    this.router.navigate(['/buscador']);
+    this.router.navigate(['/buscador/query', this.palabraBusqueda]);
   }
 
 }

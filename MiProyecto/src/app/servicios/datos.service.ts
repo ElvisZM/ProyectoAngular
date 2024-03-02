@@ -16,8 +16,8 @@ export class DatosService {
     return this.http.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=665eddc29536d1ffc4e5fdace47ae8c7`);
   }
 
-  setPalabraBuscada(termino: string) {
-    this.palabraBusqueda = termino;
+  setPalabraBuscada(palabraObtenida: string) {
+    this.palabraBusqueda = palabraObtenida;
   }
 
   getPalabraBuscada() {
@@ -26,6 +26,7 @@ export class DatosService {
 
   getMovies(query: string): Observable<any> {
     const options = {
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NjVlZGRjMjk1MzZkMWZmYzRlNWZkYWNlNDdhZThjNyIsInN1YiI6IjY1OGFiMzFiYjdiNjlkMDk2MjZkZTczOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Rufsppd2z4JY3JZaxJZDpC3FBWVswXCeqYoRkFl09ss'
@@ -35,5 +36,8 @@ export class DatosService {
     return this.http.get<any>(`https://api.themoviedb.org/3/search/movie?query=${query}`, options)
   }
 
+  movieDetail(idMovie: number) {
+    return this.http.get<any>('https://api.themoviedb.org/3/movie/' + idMovie + '?api_key=665eddc29536d1ffc4e5fdace47ae8c7&append_to_response=credits,reviews,videos,recommendations');
+  }
 
 }
