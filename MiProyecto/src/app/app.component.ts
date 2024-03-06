@@ -5,8 +5,7 @@ import { DatosService } from './servicios/datos.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [DatosService]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   palabraBusqueda: string = '';

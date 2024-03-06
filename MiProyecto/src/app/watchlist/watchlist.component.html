@@ -7,7 +7,12 @@
       <div class="col-4 mb-4" *ngFor="let movie of mywatchlist">
         <div class="card">
           <div>
-            <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top mx-auto img-fluid" [alt]="movie.title">
+            <div *ngIf="movie.poster_path">
+              <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top img-fluid mb-2" [alt]="movie.title">
+            </div>
+            <div *ngIf="!movie.poster_path">
+              <img src="../../assets/imagenes/imagen-nodisp.avif" class="card-img-top img-fluid mb-2" [alt]="movie.title">
+            </div>
             <button class="detalles" (click)="detallePelicula(movie.id)"></button>
           </div>
           <div class="card-body">

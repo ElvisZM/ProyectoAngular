@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { DatosService } from '../servicios/datos.service';
+
 
 
 @Component({
@@ -15,9 +15,9 @@ export class FilmComponent implements OnInit {
   castMovie: any[] = [];
   reviewsMovie: any[] = [];
   recommendationsMovie: any[] = [];
-  trailerUrl: string = '';
+  check: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private datosService: DatosService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private datosService: DatosService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -34,29 +34,71 @@ export class FilmComponent implements OnInit {
         }
       );
     });
+    this.checkInMyWatchlist();
   }
 
-  async addWatchlist(): Promise<void> {
-    try {
-      const options = {
-        method: 'POST',
-        headers: {
-          accept: 'application/json',
-          'content-type': 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NjVlZGRjMjk1MzZkMWZmYzRlNWZkYWNlNDdhZThjNyIsInN1YiI6IjY1OGFiMzFiYjdiNjlkMDk2MjZkZTczOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Rufsppd2z4JY3JZaxJZDpC3FBWVswXCeqYoRkFl09ss'
-        },
-        body: JSON.stringify({ media_type: 'movie', media_id: this.movie.id, watchlist: true })
-      };
-
-      const respuesta = await fetch('https://api.themoviedb.org/3/account/20862103/watchlist', options);
-      alert(`¡${this.movie.title} ha sido añadida a su watchlist!`);
-    } catch (error) {
-      console.error('Error fetching movie:', error)
-    }
+  addToMyWatchlist(movieId: number){
+    this.datosService.movieDetail(movieId).subscribe(
+      respuesta => {
+        const movie = respuesta;
+        this.datosService.addWatchlist(movieId).subscribe(
+          respuesta => {
+            this.check = true;
+            alert(`${movie.title} se ha añadido a su watchlist`)
+          },
+          error => {
+            console.error(error);
+          }
+        )
+      }
+    )    
   }
 
   detallePelicula(movieId: number) {
     this.router.navigate(['/film', movieId]);
   }
 
+  checkInMyWatchlist(){
+    this.route.paramMap.subscribe(params => {
+      const idMovie = +params.get('id')!;
+      this.datosService.getMyWatchlist()
+        .subscribe(
+          respuesta => {
+            var mywatchlist = respuesta.results;
+            for (let movie_watchlist of mywatchlist) {
+              if(idMovie == movie_watchlist.id){
+                this.check = true
+                return;
+              }
+            }
+          },
+          error => {
+            console.error(error);
+          }
+        )
+    },
+    error => {
+      console.error(error)
+    })
+  }
+
+  deleteFromWatchlist(movieId: number) {
+    this.datosService.movieDetail(movieId).subscribe(
+      respuesta => {
+        const movie = respuesta;
+        this.datosService.deleteFromWatchlist(movieId).subscribe(
+          respuesta => {
+            this.check = false
+            alert(`${movie.title} se ha eliminado de su watchlist`)
+          },
+          error => {
+            console.error(error)
+          }
+        )
+      },
+      error => {
+        console.error(error)
+      }
+    )
+  }
 }

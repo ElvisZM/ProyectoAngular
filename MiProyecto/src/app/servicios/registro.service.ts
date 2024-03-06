@@ -3,13 +3,12 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class RegistroService {
   private apiUrlRegistro = 'http://elviszm12.pythonanywhere.com/api/v1/registrar/usuario';
-
 
   constructor(private http: HttpClient) { }
 

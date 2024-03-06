@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DatosService } from '../servicios/datos.service';
 
@@ -12,7 +11,7 @@ export class WatchlistComponent implements OnInit {
   idCuenta: string = '20862103';
   mywatchlist: any[] = [];
 
-  constructor(private http: HttpClient, private router:Router, private datosService:DatosService) { }
+  constructor(private router:Router, private datosService:DatosService) { }
 
   ngOnInit(): void {
     this.getMyWatchlist();
@@ -22,13 +21,12 @@ export class WatchlistComponent implements OnInit {
     this.datosService.getMyWatchlist()
       .subscribe(
         respuesta => {
-          this.mywatchlist = respuesta.results;
-      
-    },
-    error => {
-      console.log(error);
-    }
-  );
+          this.mywatchlist = respuesta.results;      
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   deleteFromWatchlist(movieId: number) {
@@ -45,6 +43,5 @@ export class WatchlistComponent implements OnInit {
   detallePelicula(movieId: number) {
     this.router.navigate(['/film', movieId]);
   }
-
 
 }

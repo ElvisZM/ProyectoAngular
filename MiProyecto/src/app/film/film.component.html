@@ -1,14 +1,24 @@
 <div *ngIf="movie" class="container">
     <div class="d-flex mt-4">
-        <img class="img-ind" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title">
+        <div *ngIf="movie.poster_path">
+            <img class="img-ind" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title">
+        </div>
+        <div *ngIf="!movie.poster_path">
+            <img class="img-ind" src="../../assets/imagenes/imagen-nodisp.avif">
+        </div>
         <div class="p-2">
             <h1 class="card-title">{{ movie.title }}</h1>
             <div class="genero d-flex">
                 <p *ngFor="let genero of movie.genres">{{ genero.name }}</p>
             </div>
-            <div class="d-flex">
-                <button type="button" class="watchlist btn" (click)="addWatchlist()">
+            <div class="d-flex" *ngIf="!this.check">
+                <button type="button" class="watchlist btn" (click)="addToMyWatchlist(movie.id)">
                     Añadir a Watchlist
+                </button>
+            </div>
+            <div class="d-flex" *ngIf="check">
+                <button type="button" class="watchlist btn" (click)="deleteFromWatchlist(movie.id)">
+                    Quitar de Watchlist
                 </button>
             </div>
             <h3>Descripcion</h3>
@@ -18,7 +28,12 @@
             <div class="row ms-4">
                 <div class="col-3" *ngFor="let actor of castMovie.slice(0, 4)">
                     <div class="actor-container">
-                        <img class="img-actor " [src]="'https://image.tmdb.org/t/p/w500' + actor.profile_path">
+                        <div *ngIf="actor.profile_path">
+                            <img class="img-actor " [src]="'https://image.tmdb.org/t/p/w500' + actor.profile_path">
+                        </div>
+                        <div *ngIf="!actor.profile_path">
+                            <img class="img-actor" src="../../assets/imagenes/usuario-noimg.png">
+                        </div>
                         <p class="nombre"> {{ actor.name }}</p>
                         <p class="personaje">{{ actor.character }}</p>
                     </div>

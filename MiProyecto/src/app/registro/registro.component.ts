@@ -6,7 +6,7 @@ import { LoginService } from '../servicios/login.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.scss'
+  styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent{
 
@@ -21,7 +21,7 @@ export class RegistroComponent{
 
   constructor(private router: Router,
               private registroService: RegistroService,
-              private LoginService: LoginService)
+              private loginService: LoginService)
     {};
 
   registrarFormulario() {
